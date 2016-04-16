@@ -50,7 +50,7 @@ function aukerak()
 		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
 			echo "Lizentziatik irteteko Q... eman enter";
 			read enter
-			more instalazio_fitxategiak/gpl_eu.txt
+			more LICENSE
 			echo "";
 			echo "Instalazioarekin jarraitu [ B | E ]?";
 			read erantzuna
