@@ -1,0 +1,23 @@
+[Buildset]
+BuildItems=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x01\x00\x00\x00\x0b\x00\x00\x00\x00\x01\x00\x00\x00\x0c\x00O\x00n\x00E\x00g\x00i\x00n)
+
+[Launch]
+Launch Configurations=Launch Configuration 0
+
+[Launch][Launch Configuration 0]
+Configured Launch Modes=execute
+Configured Launchers=nativeAppLauncher
+Name=New Native Application Configuration
+Type=Native Application
+
+[Launch][Launch Configuration 0][Data]
+Arguments=
+Dependencies=@Variant(\x00\x00\x00\t\x00\x00\x00\x00\x00)
+Dependency Action=Build
+EnvironmentGroup=default
+Executable=file:///home/manex/dokumentuak/lanak/OnEgin/src/elkarte_gastronomikoa
+Working Directory=file:///home/manex/dokumentuak/lanak/OnEgin/debug
+isExecutable=true
+
+[MakeBuilder]
+Number Of Jobs=1

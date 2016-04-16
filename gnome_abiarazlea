@@ -1,0 +1,12 @@
+
+[Desktop Entry]
+Version=1.0
+Encoding=UTF-8
+Name=alpine
+Type=Application
+Terminal=true
+Icon[eu_ES]=/usr/local/share/elkarte_gastronomikoa/irudiak/logoa.xpm
+Name[eu_ES]=OnEgin!
+Exec=/usr/local/bin/elkarte_gastronomikoa
+GenericName[eu_ES]=
+Icon=/usr/local/share/elkarte_gastronomikoa/irudiak/logoa.xpm

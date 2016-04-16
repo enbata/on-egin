@@ -1,0 +1,130 @@
+#!/bin/bash
+
+#################################################################
+# Elkarte gastronomikoa aplikazioaren instalazio sistema da hau #
+#								#
+# Egilea: Agirre Manex						#
+# Eposta: jaimejasmi@gmail,com					#
+#################################################################
+
+clear #Pantaila garbitu
+
+echo "";
+echo "###########################################################";
+echo "# Ongi etorri On Egin! aplikazioaren instalazio sistemara #";
+echo "###########################################################";
+echo "";
+
+function menua()
+{
+	echo "Aukeratu zer egin nahi duzun:";
+	echo "";
+	echo "1 - Instalatu";
+	echo "2 - Ezabatu";
+	echo "3 - Irten";
+	read aukera
+}
+
+function errore_kontrola()
+{
+	echo "sdfsd" > aldagaia
+	if cat /tmp/OnEgin.log | grep Error; then
+		echo "Barkatu!, errorea bat suertatu da!!.";
+		echo "";
+		cat /tmp/OnEgin.log | grep Error
+		echo "";
+		echo "Informazio gehiago jasotzeko jo /tmp/OnEgin.log fitxategira";
+		echo "";
+		exit
+	fi
+}
+
+function aukerak()
+{
+	if [ "$aukera" == "1" ]; then
+		echo "Aplikazioa instalatzera goaz!";
+		echo "";
+		echo "Aplikazioa konpilatzen....";
+		echo "--------> Aplikazioa konpilatzen <----------" > /tmp/OnEgin.log
+			./configure >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioa eraikitzen....";
+		echo "--------> Aplikazioa eraikitzen <----------" >> /tmp/OnEgin.log
+			make >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioa instalatzen... (administratzailearen pasahitza beharko duzu)";
+		echo "--------> Aplikazioa instalatzen <----------" >> /tmp/OnEgin.log
+			sudo make install >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioak behar dituen irudiak kopiatzen...";
+		echo "--------> Irudiak kopiatzen <----------" >> /tmp/OnEgin.log
+			sudo ./irudiak_kopiatu >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "";
+		echo "Aplikazioak instalatzen bukatu da."
+		echo "";
+		echo "Datu-base berria sortu behar da. Hau orain edo beranduago eskuz egin dezakezu. Orain sortzeko MySql zerbitzariko administratzailearen izena eta pasahitza behar dituzu";
+		echo -n "Datu-basea orain sortu? (B/E) ";
+		read erantzuna
+		if [ "$erantzuna" == "B" ]; then
+			echo -n "MySql administratzailea (izena): ";
+			read izena
+			echo -n "Pasahitza: ";
+			read pasahitza
+			echo -n "elkarte_gastronomikoa datu-basea sortzen....  ";
+			echo "--------> elkarte_gastronomikoa datu-basea sortzen <----------" >> /tmp/OnEgin.log
+				mysql -u $izena -p$pasahitza >> /tmp/OnEgin.log < elkarte_gastronomikoa.sql
+			echo "sortuta.";
+			echo "";
+			echo "" >> /tmp/OnEgin.log
+			echo -n "'elkartea' izeneko erabiltzailea sortzen....  ";
+			echo "--------> 'elkartea' izeneko erabiltzailea sortzen <----------" >> /tmp/OnEgin.log
+				mysql -u $izena -p$pasahitza >> /tmp/OnEgin.log < erabiltzailea_sortu.sql
+			echo "Sortuta";
+			echo "";
+			echo "" >> /tmp/OnEgin.log
+
+		elif [ "$erantzuna" == "E" ]; then
+			echo "Datu-basea eskuz nola sortu jakiteko, jo INSTALATU testu fitxategira";
+			exit
+		fi
+	elif [ "$aukera" == "2" ]; then
+		echo "Aplikazioa desinstalatzera goaz";
+		echo "";
+		echo "Aplikazioa sistematik kentzen....";
+		echo "--------> Aplikazioa sistematik kentzen <----------" >> /tmp/OnEgin.log
+			sudo make uninstall >> /tmp/OnEgin.log
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioaren irudiak sistematik ezabatzen....";
+		echo "--------> Aplikazioaren irudiak sistematik ezabatzen <----------" >> /tmp/OnEgin.log
+			sudo ./irudiak_ezabatu
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioak erabiltzen zuen 'elkarte_gastronomikoa' datu-basea ezabatzea nahi duzu?, sartutako datu guztiak galduko dira eta 'elkartea' erabiltzailea ezabatuko da.";
+		echo -n "Datu-basea eta erabiltzailea orain ezabatu? (B/E) ";
+		read erantzuna
+		if [ "$erantzuna" == "B" ]; then
+			echo -n "MySql administratzailea (izena): ";
+			read izena
+			echo -n "Pasahitza: ";
+			read pasahitza
+			echo -n "datu-basea eta elkartea ezabatzen....  ";
+			echo "--------> datu-basea eta elkartea ezabatzen <----------" >> /tmp/OnEgin.log
+				mysql -u $izena -p$pasahitza >> /tmp/OnEgin.log < datu_basea_erabiltzailea_ezabatu.sql
+			echo "Ezabatuta.";
+			echo "";
+			echo "" >> /tmp/OnEgin.log
+		elif [ "$erantzuna" == "E" ]; then
+			echo "Datu-basea eta erabiltzailea eskuz ezabatu ditzazkezu.";
+			exit
+		fi
+	fi
+}
+while [ "$aukera" != "3" ]; do
+	menua
+	if [ ! -z "$aukera" ]; then aukerak; fi
+done
+exit 0;

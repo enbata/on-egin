@@ -1,0 +1,213 @@
+## Elkarte_Gastronomikoa aplikazioa instalatzeko gida ##
+Egilea: Agirre Manex
+e_maila: jaimejasmi@gmail.com
+
+## GIDOIA ##
+1) Aplikazioa instalatu / desinstalatu
+	1.1) Automatikoki
+	1.2) Eskuz
+		1.2.1) Aplikazioa instalatu aurreko pausuak
+		1.2.2) OnEgin! aplikazioa instalatu
+		1.2.3) Aplikazioak behar dituen fitxategiak prestatu
+		1.2.4) Aplikazioa erabiltzeko datu basea eraiki
+2) Aplikazioa abiarazi
+
+
+
+## 1) Aplikazioa instalatu / desinstalatu ##
+
+	Bi modu daude aplikazioaren instalazioa egiteko.
+
+		- Modu automatikoa: Eragiketa guztiak automatikoki burutzen ditu.
+
+		- Eskuz: Beharrezko eragiketak erabiltzaileak berak burutzen ditu.
+Hemen pausuz-pausu azaltzen da nola.
+
+	Dena den, aplikazioa instalatu aurretik, bere izaera dela-eta, beste
+hainbat tresna ere behar direla jakitea komeni da. Instalazioa modu
+automatikoan egiten badugu, tresna horiek ere automatikoki instalatzeko aukera
+eskainiko digu, baina nahi izanez gero, beste tresna horiek eskuz ere instala
+daitezke. Kasu horretan, eskuzko instalazioan aipatzen diren hainbat ekintza
+egin beharko ditugu, eta horretarako, eskuzko instalazioko argibideak jarraitu
+beharko dira. 
+
+
+## 1.1) Modu automatikoa ##
+
+	instalatzailea izeneko Script-a exekutatu eta berak markatutako pausuak
+jarraitu.
+
+	Script-a administratzaile baimenekin exekutatu behar da, bestela ezingo 
+ditu beharrezkoak dituen eragiketak burutu.
+
+	Script-a exekutatzeko, OnEgin.tar.gz paketeko fitxategiak nora erauzi
+ditugun jakin behar dugu; demagun gure erabiltzailearen izena joseba dela,
+eta erabiltzailearen karpeta nagusian 'soft' izena duen karpeta daukagula, eta
+bertara erauzi ditugula paketeko fitxategiak. Kasu horretan, soft karpetaren
+barnean 'aplikazioa' izeneko karpeta edukiko dugu. Hori horrela izanik,
+terminal bat ireki behar da, eta bertan honako aginduak exekutatu behar dira:
+
+		joseba@etxeko-makina:~$ cd soft/aplikazioa
+		joseba@etxeko-makina:~soft/aplikazioa$ sudo ./instalatzailea
+
+	OnEgin.tar.gz paketeko fitxategiak beste karpeta batera erauzi
+baditugu, lehenengo aginduan 'soft' jartzen duen lekuan beste karpetaren
+izena jarri beharko dugu.
+
+	Bigarren agindua administratzaile baimenekin exekutatzen saiatzen da,
+eta gure erabiltzailearen pasahitza eskatuko digu.
+
+	Instalazio prozesuan hainbat galdera egingo digu, eta beste hainbat
+informazio eskatuko digu, tartean MySQL datu-base zerbitzariaren root
+erabiltzailearen pasahitza. MySQL-server aplikazioa instalatzerakoan
+ezarritako pasahitza hain zuzen ere.
+
+## 1.2) Eskuz ##
+
+## 1.2.1) Aplikazioa instalatu aurreko pausuak ##
+
+	Aplikazioak GTK+ eta MySQL paketeenganako menpekotasuna du. Ezer egin
+aurretik pakete hauek instalatu behar dira. Begiratu zure distribuzioaren
+zerbitzarietan ea badauden lehenik. Aplikazio hauetaz gain, datuak gordetzeko
+MySQL datu base bat erabiltzen denez, berau ere sortu egin behar da; gainera,
+MySQL maneiatzeko mysql-query-browser eta mysql-admin aplikazioak instalatzea
+gomendatzen da (Pakete hauek instalatu gabe ere egin daiteke, baina MySQL
+datu-basea maneiatzen jakin behar da horretarako lehendik, gainerai, aplikazio
+hauek oso 'intuitiboak' dira eta lana asko errazten dute). Bukatzeko,
+dokumentuak inprimatu ahal izateko 'html2ps' script-a erabiltzen du OnEgin!
+aplikazioak, horregatik, html2ps aplikazioa ere instalatu behar da. Laburbilduz:
+
+		Menpekotasuna duen paketeak:
+			- libmysqlclient15-dev
+			- libgtk2.0-dev
+		Instalatu beharreko aplikazioak (MySQL)
+			- mysql-client
+			- mysql-server
+			- html2ps
+		Iradokitutako paketeak:
+			- mysql-query-browser
+			- mysql-admin
+			- libglibmm
+			- libgtkmm
+			- mysql-query-browser-common
+
+	Aplikazio hauek guztiak instalatzeko linux banaketaren araberako
+aginduak erabili beharko dira, esate baterako, debian edota ubuntu daukan
+makina batean, terminal bat ireki eta...
+
+		~$ sudo apt-get install libmysqlclient15-dev
+
+Agindu horrek libmysqlclient15-dev paketea eta berak behar dituen beste
+pakete guztiak instalatuko ditu. Aplikazio bakoitzarentzat horrelako agindua
+exekutatu beharko dugu.
+
+	 Beste aukerarik ere badago, era grafikoan lan egitea nahiago izanez 
+gero, 'synaptic' pakete kudeaketarako aplikazioa ere erabil daiteke.
+
+## 1.2.2) OnEgin! aplikazioa instalatu ##
+
+	Oinarrizko pausuak jarraituz egiten da. Lehenengo aplikazioa bera
+instalatu behar da, horretarako hiru agindu exekutatu behar dira, beti ere 
+'terminal' batean eragin behar dira aginduak, eta aplikazioaren fitxategiak
+dauden karpetan kokatu behar gara (demagun erabiltzailearen karpeta nagusiko 
+'soft' karpetara erauzi ditugula OnEgin.tar.gz paketeko fitxategiak):
+
+	~$ cd soft/aplikazioa
+	~/soft/aplikazioa$ ./configure
+	~/soft/aplikazioa$ make
+	~/soft/aplikazioa$ sudo make install
+
+Azken aginduak gure erabiltzailearen pasahitza eskatuko digu, eta 
+erabiltzaileak administraziorako gaitasunak eduki behar ditu.
+
+	Aplikazioa kendu (desinstalatu) nahi bada:
+
+	~/soft/aplikazioa$ sudo make uninstall
+
+## 1.2.3) Aplikazioak behar dituen fitxategiak prestatu ##
+
+	Exekuzio garaian irudi batzuk erabiltzen ditu programak, hauek
+paketea erauzi dugun karpetatik gure sistemaren karpetetara kopiatu behar
+dira. 'irudiak_kopiatu' izeneko script-a aurkituko duzu hau burutzeko.
+Pausuak bi dira, scriptari exekuzio baimenak eman eta ondoren exekutatu
+administratzaile baimenekin:
+
+	~/soft/aplikazioa$ chmod +x irudiak_kopiatu
+	~/soft/aplikazioa$ sudo ./irudiak_kopiatu 
+
+	Aplikazioa abiarazteko, Gnomerako aplikazio abiarazle bat ere badago
+paketearen fitxategien artean. Fitxategi hori gure erabiltzailearen
+mahaigainera kopiatu behar da:
+
+	~/soft/aplikazioa$ cp gnome_abiarazlea ~/Desktop/OnEgin.desktop
+
+	Aplikazioa desinstalatu nahi izanez gero, kopiatutako irudiak
+ezabatzeko scripta ere badago fitxategien artean: behin programa kenduta
+(aurreko urratseko 'sudo make uninstall' egin ondoren), kopiatutako irudiak
+ere ezabatzea komeniko litzateke. 'irudiak_ezabatu' izeneko script-a dago
+lan hori burutzeko. Irudiak kopiatzeko script-arekin emandako urrats berdinak
+eman behar dira honekin ere: 
+
+	~/soft/aplikazioa$ chmod +x irudiak_ezabatu
+	~/soft/aplikazioa$ sudo ./irudiak_ezabatu 
+
+## 1.2.4) Aplikazioa erabiltzeko datu-basea eraiki ##
+
+	OHARRA: Lehendik ere ezagutzen baduzu MySQL datu-baseen
+funtzionamendua, atal hau salta dezakezu. Bestalde, oinarrizko datu-basea 
+sortzeko, 'elkarte_gastronomikoa.sql' script-a dago fitxategien artean.
+Gogoratu, datu-base zerbitzaria makina lokalean instalatu behar dela,
+programa ez dago prestatuta beste makina batean dagoen datu base bat atzitzeko.
+
+	Aplikazioak MySQL motako datu-base bat erabiltzen du datuak
+gordetzeko, beraz, sortu egin behar da programa erabili ahal izateko
+(Sortu gabe abiarazi ezkero programa ez da ibiliko). Jarraitu beharreko
+pausuak:
+
+	1) MySQL zerbitzaria instalatu: mysql-client eta mysql-server
+aplikazioak instalatu. Urrats hau 1.2.1 puntuan azaldu dugu.
+
+	2) MySQL zerbitzaria martxan jarri: aplikaioaren instalazioa
+bukatzean normalean automatikoki jartzen da martxan. Hala izango ez balitz,
+/etc/init.d/ barnean dagoen 'mysql' script-a erabili behar da.
+/etc/init.d/ barnean (administratzaile baimenekin):
+
+	 /etc/init.d$ sudo mysql start (Zerbitzaria abiarazteko)
+	 /etc/init.d$ sudo mysql stop  (Zerbitzaria gelditzeko)
+	 /etc/init.d$ sudo mysql restart  (Zerbitzaria berrabiarazteko)
+
+	3) Datu-basea sortu: mysql-query-browser aplikazioa instalatu. 
+Aplikazioa abiarazi, 'root' erabiltzailea erabiliz (MySQL instalatu berritan
+ez du pasahitzik, edota instalatzerakoan root erabiltzailearentzat pashitza
+ezartzeko eskatuko du). Bertan, File -> Open Script aukeratu eta ireki
+'elkarte_gastronomikoa.sql' fitxategia. Azkenik "Execute" eman eta datu-basea
+sortuta egongo da.
+
+	4) Datu-basea atzitzeko 'elkartea' izeneko erabiltzailea
+sortu: mysql-admin aplikazioa instalatu. Abiarazi aplikazioa, aurreko pausuan
+bezela 'root' erabiltzailea erabiliz. Bertan, aukeratu "user administration"
+eta sortu erabiltzaile berri bat 'elkartea' izenekoa. Pasahitzak ez sartu,
+hutsik utzi eta "Schema Privileges" aukeran (erabiltzailea sortzeko lekuan
+bertan) 'elkarte_gastronomikoa' datu basearen gaineko baimen guztiak eman.
+Horretarako, 'elkarte_gastronomikoa' aukeratu eta eskuineko kuadroko aukera
+guztiak ezkerrera pasa. Bukatzeko, "Apply changes" eman.
+
+		OHARRA: Baliteke mysql-admin martxan jarri eta gero
+erabiltzaileak administratzeko lehioan blokeatuta gelditzea aplikazioa.
+Hau, programak duen "bug" (Akats) baten ondorioa da. Arazoa saiesteko,
+programa abiarazi aurretik honako kodea exekutatu:
+
+	~$ export DEBUG_DONT_SPAWN_FETCHES=1
+
+## 5) Aplikazioa abiarazi ##
+
+	Gnome leiho kudeatzailea erabiltzen duen makinabadaukagu, 
+1.2.3 urratsean kopiatutako abiarazlea erabil daiteke, hau da, saguarekin 
+OnEgin! abiarazlearen gainean klik egin (OnEgin.desktop fitxategia da 
+abiarazlea).
+	Beste aukera bat ere badago, hau da, aplikazioa abiarazteko, terminal
+batean 'elkarte_gastronomikoa' agindua exekutatu.
+
+	~$ elkarte_gastronomikoa
+
+Agindu horrek gure aplikazioa martxan jarriko du.
