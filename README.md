@@ -6,7 +6,7 @@ __OnEgin__ elkarte gastronomikoak kudeatzeko C + GKT aplikazio bat da. Elkarte g
 
 Aplikazio hau 2007 urtean garatu zen, egileak _Sistemen Informatikan ingeniari tekniko_ unibertsitate titulua lortzeko karrera bukaerako proiektu bezala garatu zuenean. Egin zenetik ez da aldatu.
 
-Proiektua aztertzera animatzen bazara, kontutan hartu programazio maila nahiko apala dela. C eta GTK proiektua garatu ahala ikasten joan zen egilea eta garai arteko bere _maila_ oraindik ere asko garatzeko zegoen ;)
+Proiektua aztertzera animatzen bazara, kontutan hartu programazio maila nahiko apala dela. C eta GTK proiektua garatu ahala ikasten joan zen egilea eta garai hartako bere _maila_ oraindik ere asko garatzeko zegoen ;)
 
 ## Instalazioa
 
