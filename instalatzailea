@@ -28,7 +28,6 @@ function menua()
 
 function errore_kontrola()
 {
-	echo "sdfsd" > aldagaia
 	if cat /tmp/OnEgin.log | grep Error; then
 		echo "Barkatu!, erroreren bat gertatu da!!.";
 		echo "";
