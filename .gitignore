@@ -6,6 +6,7 @@ elkarte_gastronomikoa
 
 # Konpilazio fitxategiak
 *.o
+.swp
 config.status
 configure*
 debug
