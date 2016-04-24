@@ -1,7 +1,16 @@
 # Exekutagarria
 elkarte_gastronomikoa
 
-*~o
+# Fitxategi tenporalak
+*~
+
+# Konpilazio fitxategiak
 *.o
+.swp
+config.status
+configure*
 debug
+autom4te.cache
 config.log
+Makefile
+src/.deps
