@@ -9,6 +9,7 @@ elkarte_gastronomikoa
 .swp
 config.status
 configure*
+!configure
 debug
 autom4te.cache
 config.log
