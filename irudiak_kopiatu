@@ -1,9 +1,0 @@
-#Egilea: Agirre Manex
-#e-maila: jaimejasmi@gmail.com
-
-## elkarte_gastronomikoa aplikazioak behar dituen irudiak kopiatzeko script-a ##
-
-# OHARRA: Administratzailearen baimenekin exekutatu behar da
-
-mkdir /usr/local/share/elkarte_gastronomikoa
-cp -r src/irudiak /usr/local/share/elkarte_gastronomikoa/

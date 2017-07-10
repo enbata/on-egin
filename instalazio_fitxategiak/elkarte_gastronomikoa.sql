@@ -131,20 +131,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`Elkartea` (
 
 /*!40000 ALTER TABLE `Elkartea` DISABLE KEYS */;
 LOCK TABLES `Elkartea` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`Elkartea` VALUES  (2,5),
- (5,7),
- (3,32),
- (4,10),
- (1,14),
- (10,50),
- (11,295),
- (14,5),
- (7,30),
- (6,20),
- (9,45),
- (13,5),
- (12,3),
- (8,75);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Elkartea` ENABLE KEYS */;
 
@@ -194,7 +180,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`ElkartekoDatuak` (
 
 /*!40000 ALTER TABLE `ElkartekoDatuak` DISABLE KEYS */;
 LOCK TABLES `ElkartekoDatuak` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`ElkartekoDatuak` VALUES  ('Arrano kultur elkart','Musika Plaza','20800','Zarautz','','2007',1,'');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `ElkartekoDatuak` ENABLE KEYS */;
 
@@ -220,20 +205,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`Erosketak` (
 
 /*!40000 ALTER TABLE `Erosketak` DISABLE KEYS */;
 LOCK TABLES `Erosketak` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`Erosketak` VALUES  (1,1,24,'2008-03-27',1,'1,23'),
- (2,2,12,'2008-03-27',1,'2,4'),
- (3,3,89,'2008-03-27',1,'1'),
- (4,4,21,'2008-03-27',2,'0,56'),
- (5,5,12,'2008-03-27',1,'1,2'),
- (6,6,30,'2008-04-01',1,'0,4'),
- (7,7,50,'2008-04-01',1,'0,4'),
- (8,8,150,'2008-04-01',1,'0,5'),
- (9,9,120,'2008-04-01',1,'0,90'),
- (10,10,400,'2008-04-01',1,'0,20'),
- (11,11,500,'2008-04-01',1,'0,30'),
- (12,12,10,'2008-04-01',1,'2,50'),
- (13,13,50,'2008-04-01',1,'0,20'),
- (14,14,10,'2008-04-01',1,'1,25');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Erosketak` ENABLE KEYS */;
 
@@ -256,12 +227,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`Erregistroa` (
 
 /*!40000 ALTER TABLE `Erregistroa` DISABLE KEYS */;
 LOCK TABLES `Erregistroa` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`Erregistroa` VALUES  (1,'2008-03-27','0000-00-00 00:00:00'),
- (2,'2008-03-27','0000-00-00 00:00:00'),
- (3,'2008-04-01','0000-00-00 00:00:00'),
- (4,'2008-04-01','0000-00-00 00:00:00'),
- (5,'2008-04-28','0000-00-00 00:00:00'),
- (6,'2008-04-29','0000-00-00 00:00:00');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Erregistroa` ENABLE KEYS */;
 
@@ -317,11 +282,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`Faltak` (
 
 /*!40000 ALTER TABLE `Faltak` DISABLE KEYS */;
 LOCK TABLES `Faltak` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`Faltak` VALUES  (6,3,-1,'2008-04-01','2008-04-28'),
- (3,2,-5,'2008-03-27','2008-04-01'),
- (4,9,-5,'2008-04-01','2008-04-01'),
- (5,1,-4,'2008-04-01','2008-04-01'),
- (7,3,-2,'2008-04-28','2008-04-29');
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Faltak` ENABLE KEYS */;
 
@@ -447,14 +407,6 @@ CREATE TABLE  `elkarte_gastronomikoa`.`Kontuak` (
 
 /*!40000 ALTER TABLE `Kontuak` DISABLE KEYS */;
 LOCK TABLES `Kontuak` WRITE;
-INSERT INTO `elkarte_gastronomikoa`.`Kontuak` VALUES  (0,0,3,1,5,'2008-03-27','FALTAO',NULL),
- (1,0,3,1,12,'2008-03-27','FALTAO',NULL),
- (2,0,3,1,1,'2008-03-27','FALTAA',NULL),
- (3,0,3,1,1,'2008-04-01','FALTAA',NULL),
- (4,1,4,1,2,'2008-04-29','KONTUA','Dirua jarrita'),
- (4,1,3,1,5,'2008-04-29','KONTUA','Dirua jarrita'),
- (4,1,11,4,5,'2008-04-29','KONTUA','Dirua jarrita'),
- (5,1,3,1,1,'2008-04-29','FALTAO',NULL);
 UNLOCK TABLES;
 /*!40000 ALTER TABLE `Kontuak` ENABLE KEYS */;
 

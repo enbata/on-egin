@@ -20,16 +20,16 @@ function menua()
 	echo "Aukeratu zer egin nahi duzun:";
 	echo "";
 	echo "1 - Instalatu";
-	echo "2 - Ezabatu";
+	echo "2 - Kendu";
 	echo "3 - Irten";
+	echo "4 - Exekutagarria berrinstalatu";
 	read aukera
 }
 
 function errore_kontrola()
 {
-	echo "sdfsd" > aldagaia
 	if cat /tmp/OnEgin.log | grep Error; then
-		echo "Barkatu!, errorea bat suertatu da!!.";
+		echo "Barkatu!, erroreren bat gertatu da!!.";
 		echo "";
 		cat /tmp/OnEgin.log | grep Error
 		echo "";
@@ -42,10 +42,43 @@ function errore_kontrola()
 function aukerak()
 {
 	if [ "$aukera" == "1" ]; then
+		echo "";
+		echo "Instalatzera zoazen aplikazioak GPL lizentzia erabiltzen du. Aplikazio hau instalatzean GPL lizentzian aipatzen denarekin erabat ados zaudela adierazten duzu.";
+		echo "GPL lizentzia irakurri [ B | E ]?";
+		read erantzuna
+		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
+			echo "Lizentziatik irteteko Q... eman enter";
+			read enter
+			more LICENSE
+			echo "";
+			echo "Instalazioarekin jarraitu [ B | E ]?";
+			read erantzuna
+			if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "E" ]; then
+				exit
+			fi
+		fi
+		echo "";
+		echo "Aplikazioa ondo ibil dadin honako pakete hauek beharrezkoak dira";
+		echo "	libmysqlclient15-dev";
+		echo "	libgtk2.0-dev";
+		echo "	mysql-client";
+		echo "	mysql-server";
+		echo "	html2ps";
+		echo "Orain instalatu pakete hauek? (Interneteko konexioa eta apt-get beharrezkoak dira) [ B | E ]";
+		echo "";
+		read erantzuna
+		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
+			echo "Paketeak instalatzen.....";
+			apt-get install libmysqlclient15-dev libgtk2.0-dev mysql-client html2ps > /tmp/OnEgin.log
+			echo " instalatuta.";
+		else
+			echo "Aplikazioa instalatzen bukatzean eskuz sartu beharko dituzu adierazitako paketeak, bestela aplikazioa ez da egoki ibiliko";
+		fi
+		echo "";
 		echo "Aplikazioa instalatzera goaz!";
 		echo "";
 		echo "Aplikazioa konpilatzen....";
-		echo "--------> Aplikazioa konpilatzen <----------" > /tmp/OnEgin.log
+		echo "--------> Aplikazioa konpilatzen <----------" >> /tmp/OnEgin.log
 			./configure >> /tmp/OnEgin.log
 			errore_kontrola
 		echo "" >> /tmp/OnEgin.log
@@ -54,23 +87,34 @@ function aukerak()
 			make >> /tmp/OnEgin.log
 			errore_kontrola
 		echo "" >> /tmp/OnEgin.log
-		echo "Aplikazioa instalatzen... (administratzailearen pasahitza beharko duzu)";
+		echo "Aplikazioa instalatzen...";
 		echo "--------> Aplikazioa instalatzen <----------" >> /tmp/OnEgin.log
-			sudo make install >> /tmp/OnEgin.log
+			make install >> /tmp/OnEgin.log
 			errore_kontrola
 		echo "" >> /tmp/OnEgin.log
+		echo "--------> Irudiak kopiatzen <----------" >> /tmp/OnEgin.log
 		echo "Aplikazioak behar dituen irudiak kopiatzen...";
 		echo "--------> Irudiak kopiatzen <----------" >> /tmp/OnEgin.log
-			sudo ./irudiak_kopiatu >> /tmp/OnEgin.log
+			./irudiak_kopiatu >> /tmp/OnEgin.log
 			errore_kontrola
+		echo "Gnome leiho sistema erabiltzen al duzu? [ B | E ]";
+		echo "";
+		read erantzuna
+		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
+			echo "Gnomerako abiarazlea karpeta nagusira kopiatzen...";
+			cp -r gnome_abiarazlea ~/OnEgin.desktop >> /tmp/OnEgin.log
+			echo "Gnomerako abiarazlearen gainean klik eginaz aplikazioa abiaraz dezakezu.";
+		else
+			echo "Aplikazioa ibiarazteko terminal bat ireki eta bertan elkarte_gastronomikoa agindua exekutatu.";
+		fi
 		echo "" >> /tmp/OnEgin.log
 		echo "";
-		echo "Aplikazioak instalatzen bukatu da."
+		echo "Aplikazioaren instalazioa bukatu da."
 		echo "";
 		echo "Datu-base berria sortu behar da. Hau orain edo beranduago eskuz egin dezakezu. Orain sortzeko MySql zerbitzariko administratzailearen izena eta pasahitza behar dituzu";
 		echo -n "Datu-basea orain sortu? (B/E) ";
 		read erantzuna
-		if [ "$erantzuna" == "B" ]; then
+		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
 			echo -n "MySql administratzailea (izena): ";
 			read izena
 			echo -n "Pasahitza: ";
@@ -88,25 +132,31 @@ function aukerak()
 			echo "";
 			echo "" >> /tmp/OnEgin.log
 
-		elif [ "$erantzuna" == "E" ]; then
+		elif [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "E" ]; then
 			echo "Datu-basea eskuz nola sortu jakiteko, jo INSTALATU testu fitxategira";
 			exit
 		fi
+		echo "";
+		echo "Mila esker On egin! aplikazioa instalatzeagatik!";
+		echo "aplikazioa abiarazitakoan zure elkartearen logoa ager dadin nahi baduzu /usr/local/share/elkarte_gastronomikoa/irudiak/logoa.png fitxategia aldatu behar duzu";
+		echo "programa martxan jartzeko bi aukera dauzkazu:";
+		echo "    1.- terminal batean elkarte_gastronomikoa agindua abiarazi";
+		echo "    2.- gnome erabiltzen ari bazara karpeta nagusiko OnEgin abiarazlean klik egin";
 	elif [ "$aukera" == "2" ]; then
 		echo "Aplikazioa desinstalatzera goaz";
 		echo "";
 		echo "Aplikazioa sistematik kentzen....";
 		echo "--------> Aplikazioa sistematik kentzen <----------" >> /tmp/OnEgin.log
-			sudo make uninstall >> /tmp/OnEgin.log
+			make uninstall >> /tmp/OnEgin.log
 		echo "" >> /tmp/OnEgin.log
 		echo "Aplikazioaren irudiak sistematik ezabatzen....";
 		echo "--------> Aplikazioaren irudiak sistematik ezabatzen <----------" >> /tmp/OnEgin.log
-			sudo ./irudiak_ezabatu
+			./irudiak_ezabatu
 		echo "" >> /tmp/OnEgin.log
 		echo "Aplikazioak erabiltzen zuen 'elkarte_gastronomikoa' datu-basea ezabatzea nahi duzu?, sartutako datu guztiak galduko dira eta 'elkartea' erabiltzailea ezabatuko da.";
 		echo -n "Datu-basea eta erabiltzailea orain ezabatu? (B/E) ";
 		read erantzuna
-		if [ "$erantzuna" == "B" ]; then
+		if [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "B" ]; then
 			echo -n "MySql administratzailea (izena): ";
 			read izena
 			echo -n "Pasahitza: ";
@@ -117,10 +167,37 @@ function aukerak()
 			echo "Ezabatuta.";
 			echo "";
 			echo "" >> /tmp/OnEgin.log
-		elif [ "$erantzuna" == "E" ]; then
+		elif [ "`echo \"$erantzuna\" | tr [:lower:] [:upper:]`" == "E" ]; then
 			echo "Datu-basea eta erabiltzailea eskuz ezabatu ditzazkezu.";
 			exit
 		fi
+        elif [ "$aukera" == "4" ]; then
+		echo "Aplikazioaren kodea berrinstalatzera goaz";
+		echo "";
+		echo "Aplikazioa sistematik kentzen....";
+		echo "--------> Aplikazioa sistematik kentzen <----------" >> /tmp/OnEgin.log
+			make uninstall >> /tmp/OnEgin.log
+		echo "" >> /tmp/OnEgin.log
+		echo "";
+		echo "Aplikazioa instalatzera goaz!";
+		echo "";
+		echo "Aplikazioa konpilatzen....";
+		echo "--------> Aplikazioa konpilatzen <----------" >> /tmp/OnEgin.log
+			./configure >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioa eraikitzen....";
+		echo "--------> Aplikazioa eraikitzen <----------" >> /tmp/OnEgin.log
+			make >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "Aplikazioa instalatzen...";
+		echo "--------> Aplikazioa instalatzen <----------" >> /tmp/OnEgin.log
+			make install >> /tmp/OnEgin.log
+			errore_kontrola
+		echo "" >> /tmp/OnEgin.log
+		echo "";
+		echo "Mila esker On egin! aplikazioa instalatzeagatik! programa martxan jartzeko elkarte_gastronomikoa exekutatu";
 	fi
 }
 while [ "$aukera" != "3" ]; do
