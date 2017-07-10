@@ -10,7 +10,7 @@ Proiektua aztertzera animatzen bazara, kontutan hartu programazio maila nahiko a
 
 ## Instalazioa
 
-Instalazio argibideak proiektuaren erroko INSTALATU fitxategiaren barnean topatu daitezke.
+Instalazio argibideak install karpetako INSTALATU fitxategiaren barnean topatu daitezke.
 
 ## Lizentzia
 
